@@ -17,6 +17,7 @@ from collections import defaultdict
 __version__ = '1.21.4'
 _PARAMS = re.compile(r'{\w+}')
 
+# hey hey hey its me mario
 # Implementation note:  This file is intended to be a standalone file
 # that gets copied into the lambda deployment package.  It has no dependencies
 # on other parts of chalice so it can stay small and lightweight, with minimal
