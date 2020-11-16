@@ -501,7 +501,10 @@ class RouteEntry(object):
 
     def __init__(self, view_function, view_name, path, method,
                  api_key_required=None, content_types=None,
-                 cors=False, authorizer=None):
+                 cors=False, authorizer=None, requestBody=None, responses=None, parameters=None):
+        self.requestBody = requestBody
+        self.responses = responses
+        self.parameters = parameters
         self.view_function = view_function
         self.view_name = view_name
         self.uri_pattern = path
@@ -915,6 +918,9 @@ class _HandlerRegistration(object):
                              path.strip('/')]).rstrip('/')
         methods = actual_kwargs.pop('methods', ['GET'])
         route_kwargs = {
+            'requestBody': actual_kwargs.pop('requestBody', None),
+            'responses': actual_kwargs.pop('responses', None),
+            'parameters': actual_kwargs.pop('parameters', None),
             'authorizer': actual_kwargs.pop('authorizer', None),
             'api_key_required': actual_kwargs.pop('api_key_required', None),
             'content_types': actual_kwargs.pop('content_types',
